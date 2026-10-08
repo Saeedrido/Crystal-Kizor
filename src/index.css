@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-paper: #f5f1e8;
+  --color-paper-deep: #ebe5d7;
+  --color-paper-line: #ddd5c3;
+  --color-ink: #1a1613;
+  --color-ink-soft: #4a423b;
+  --color-clay: #b3532f;
+  --color-clay-deep: #8f3f22;
+  --color-clay-light: #d9764b;
+  --color-sage: #5e5c43;
+  --color-sage-soft: #e4e0cd;
+  --color-night: #171310;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-clay);
+    color: var(--color-paper);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay-deep);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-solid {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    border: 1px solid var(--color-ink);
+  }
+
+  .btn-solid:hover {
+    background-color: var(--color-clay-deep);
+    border-color: var(--color-clay-deep);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-light {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-paper);
+  }
+
+  .btn-light:hover {
+    background-color: var(--color-clay-deep);
+    border-color: var(--color-clay-deep);
+    color: var(--color-paper);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .delay-1 {
+    transition-delay: 0.1s;
+  }
+  .delay-2 {
+    transition-delay: 0.2s;
+  }
+  .delay-3 {
+    transition-delay: 0.3s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
